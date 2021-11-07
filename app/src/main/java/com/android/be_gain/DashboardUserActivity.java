@@ -27,7 +27,7 @@ public class DashboardUserActivity extends AppCompatActivity
 
         // init firebase auth
         firebaseAuth = FirebaseAuth.getInstance();
-        checkUser();
+        //checkUser();                         ////////////// uncomment this if you want to check the user
 
         // handle click, logout
         binding.logoutBtn.setOnClickListener(new View.OnClickListener() {

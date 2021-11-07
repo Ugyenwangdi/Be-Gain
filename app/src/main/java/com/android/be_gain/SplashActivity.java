@@ -6,6 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,6 +21,15 @@ import com.google.firebase.database.ValueEventListener;
 
 public class SplashActivity extends AppCompatActivity
 {
+    //Variable for
+    private static int SPLASH_SCREEN = 3000;
+    //Variables for splash
+    Animation topAnim, bottomAnim;
+    ImageView logoImage;
+    TextView logoTxt1;
+    TextView logoTxt2;
+    TextView btn_splash;
+
     // firebase auth
     private FirebaseAuth firebaseAuth;
 
@@ -25,6 +38,25 @@ public class SplashActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        //Animations for splash
+        topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
+        bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animatiion);
+        logoImage = findViewById(R.id.image_logo);
+        logoTxt1 = findViewById(R.id.logo_text1);
+        logoTxt2 = findViewById(R.id.logo_text2);
+        btn_splash = findViewById(R.id.btn_splash);
+        logoImage.setAnimation(topAnim);
+        logoTxt1.setAnimation(bottomAnim);
+        logoTxt2.setAnimation(bottomAnim);
+        btn_splash.setAnimation(bottomAnim);
+
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                checkUser();
+//            }
+//        },2000);
 
         // init firebase auth
         firebaseAuth = FirebaseAuth.getInstance();
@@ -35,11 +67,11 @@ public class SplashActivity extends AppCompatActivity
             @Override
             public void run()
             {
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                finish();
-                //checkUser();
+//                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+//                finish();
+                checkUser();
             }
-        }, 2000); // 2000 means 2 seconds
+        }, SPLASH_SCREEN); // 2000 means 2 seconds
     }
 
     private void checkUser()

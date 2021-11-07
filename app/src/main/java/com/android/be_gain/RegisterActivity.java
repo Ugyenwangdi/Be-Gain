@@ -157,7 +157,7 @@ public class RegisterActivity extends AppCompatActivity
         hashMap.put("email", email);
         hashMap.put("name", name);
         hashMap.put("profileImage", ""); // add empty, will do later
-        hashMap.put("userType", "admin"); // possible values are user, admin: will make admin manually in firebase realtime database by changing this value
+        hashMap.put("userType", "user"); // userType to "admin" for admin// possible values are user, admin: will make admin manually in firebase realtime database by changing this value
         hashMap.put("time", timestamp);
 
         //set data to db
@@ -173,7 +173,7 @@ public class RegisterActivity extends AppCompatActivity
                         progressDialog.dismiss();
                         Toast.makeText(RegisterActivity.this, "Account created...", Toast.LENGTH_SHORT).show();
                         // since user account is created so start dashboard of user
-                        startActivity(new Intent(RegisterActivity.this, DashboardUserActivity.class));
+                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                         finish();
                     }
                 })

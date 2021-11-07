@@ -3,5 +3,6 @@
     <string name="splash_welcome">Welcome to Be-Gain</string>
     <string name="splash_msg">Let us learn Python together</string>
     <string name="splash_btn">Get Started</string>
-    <string name="new_user_signup">New User? <b>SignUp</b></string> <!-- make signup bold-->
+    <string name="new_user_signup">New User? <b>SignUp</b></string>
+    <string name="splash_begain">Be-Gain</string> <!-- make signup bold-->
 </resources>
