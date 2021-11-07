@@ -84,6 +84,10 @@ public class SplashActivity extends AppCompatActivity
             // start main screen
             startActivity(new Intent(SplashActivity.this, MainActivity.class));
             finish(); // finish this activity
+
+            /////////////////////////// for user
+//            startActivity(new Intent(SplashActivity.this, DashboardUserActivity.class));
+//            finish(); // finish this activity
         }
         else
         {

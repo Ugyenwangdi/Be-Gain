@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 
 import com.android.be_gain.databinding.ActivityDashboardAdminBinding;
@@ -44,6 +46,31 @@ public class DashboardAdminActivity extends AppCompatActivity
         checkUser();
         loadCategories();
 
+        // edit text change listener, search
+        binding.searchEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // called as an when use type each letter
+                try {
+                    adapterCategory.getFilter().filter(s);
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         // handle click, logout
         binding.logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +85,14 @@ public class DashboardAdminActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DashboardAdminActivity.this, CategoryAddActivity.class));
+            }
+        });
+
+        // handle click, start pdf add screen
+        binding.addPdfFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DashboardAdminActivity.this, PdfAddActivity.class));
             }
         });
     }
