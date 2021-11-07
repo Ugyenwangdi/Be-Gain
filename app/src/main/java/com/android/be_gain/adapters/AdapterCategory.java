@@ -1,8 +1,9 @@
-package com.android.be_gain;
+package com.android.be_gain.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.be_gain.PdfListAdminActivity;
+import com.android.be_gain.filters.FilterCategory;
+import com.android.be_gain.models.ModelCategory;
 import com.android.be_gain.databinding.RowCategoryBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -87,6 +91,20 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.Holder
 
             }
         });
+
+        // handle item click, goto PdfListAdminActivity, also pass pdf categoryId
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, PdfListAdminActivity.class);
+                intent.putExtra("categoryId", id);
+                intent.putExtra("categoryTitle", category);
+                context.startActivity(intent);
+
+            }
+        });
+
+
     }
 
     private void deleteCategory(ModelCategory model, HolderCategory holder) {

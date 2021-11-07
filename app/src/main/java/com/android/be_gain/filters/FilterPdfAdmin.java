@@ -1,21 +1,26 @@
-package com.android.be_gain;
+package com.android.be_gain.filters;
 import android.widget.Filter;
+
+import com.android.be_gain.adapters.AdapterCategory;
+import com.android.be_gain.adapters.AdapterPdfAdmin;
+import com.android.be_gain.models.ModelCategory;
+import com.android.be_gain.models.ModelPdf;
 
 import java.util.ArrayList;
 
-public class FilterCategory extends Filter {
+public class FilterPdfAdmin extends Filter {
 
     // arraylist in which we want to search
-    ArrayList<ModelCategory> filterList;
+    ArrayList<ModelPdf> filterList;
 
     // adapter in which filter need to be implemented
-    AdapterCategory adapterCategory;
+    AdapterPdfAdmin adapterPdfAdmin;
 
     // constructor
 
-    public FilterCategory(ArrayList<ModelCategory> filterList, AdapterCategory adapterCategory) {
+    public FilterPdfAdmin(ArrayList<ModelPdf> filterList, AdapterPdfAdmin adapterPdfAdmin) {
         this.filterList = filterList;
-        this.adapterCategory = adapterCategory;
+        this.adapterPdfAdmin = adapterPdfAdmin;
     }
 
 
@@ -27,11 +32,11 @@ public class FilterCategory extends Filter {
         {
             // change to upper case, or lower case to avoid case sensitivity
             constraint = constraint.toString().toUpperCase();
-            ArrayList<ModelCategory> filteredModels = new ArrayList<>();
+            ArrayList<ModelPdf> filteredModels = new ArrayList<>();
             for (int i = 0; i < filterList.size(); i++)
             {
                 // validate
-                if (filterList.get(i).getCategory().toUpperCase().contains(constraint))
+                if (filterList.get(i).getTitle().toUpperCase().contains(constraint))
                 {
                     // add to filtered list
                     filteredModels.add(filterList.get(i));
@@ -52,9 +57,9 @@ public class FilterCategory extends Filter {
     @Override
     protected void publishResults(CharSequence constraint, FilterResults results) {
         // apply filter changes
-        adapterCategory.categoryArrayList = (ArrayList<ModelCategory>)results.values;
+        adapterPdfAdmin.pdfArrayList = (ArrayList<ModelPdf>)results.values;
 
         // notify changes
-        adapterCategory.notifyDataSetChanged();
+        adapterPdfAdmin.notifyDataSetChanged();
     }
 }

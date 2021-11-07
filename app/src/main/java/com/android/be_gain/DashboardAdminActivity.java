@@ -9,7 +9,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 
+import com.android.be_gain.adapters.AdapterCategory;
 import com.android.be_gain.databinding.ActivityDashboardAdminBinding;
+import com.android.be_gain.models.ModelCategory;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

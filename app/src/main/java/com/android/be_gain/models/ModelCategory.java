@@ -1,4 +1,4 @@
-package com.android.be_gain;
+package com.android.be_gain.models;
 
 public class ModelCategory {
 
