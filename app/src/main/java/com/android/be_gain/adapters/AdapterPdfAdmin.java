@@ -1,6 +1,9 @@
 package com.android.be_gain.adapters;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.be_gain.MyApplication;
+import com.android.be_gain.PdfEditActivity;
 import com.android.be_gain.databinding.RowPdfAdminBinding;
 import com.android.be_gain.filters.FilterPdfAdmin;
 import com.android.be_gain.models.ModelPdf;
@@ -52,11 +57,19 @@ public class AdapterPdfAdmin extends RecyclerView.Adapter<AdapterPdfAdmin.Holder
 
     private static final String TAG = "PDF_ADAPTER_TAG";
 
+    // progress
+    private ProgressDialog progressDialog;
+
     // constructor
     public AdapterPdfAdmin(Context context, ArrayList<ModelPdf> pdfArrayList) {
         this.context = context;
         this.pdfArrayList = pdfArrayList;
         this.filterList = pdfArrayList;
+
+        // init progress dialog
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Please wait");
+        progressDialog.setCanceledOnTouchOutside(false);
     }
 
     @NonNull
@@ -89,6 +102,97 @@ public class AdapterPdfAdmin extends RecyclerView.Adapter<AdapterPdfAdmin.Holder
         loadCategory(model, holder);
         loadPdfFromUrl(model, holder);
         loadPdfSize(model, holder);
+
+        // handle click, show dialog with options 1) edit 2) delete
+        holder.moreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moreOptionDialog(model, holder);
+            }
+        });
+
+    }
+
+    private void moreOptionDialog(ModelPdf model, HolderPdfAdmin holder) {
+
+        String noteId = model.getId();
+        String noteUrl = model.getUrl();
+        String noteTitle = model.getTitle();
+
+        // options to show in dialog
+        String[] options = {"Edit", "Delete"};
+
+        // alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Choose Options")
+                .setItems(options, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // handle dialog option click
+                        if (which == 0)
+                        {
+                            // Edit clicked, open PdfEditActivity to edit note info
+                            Intent intent = new Intent(context, PdfEditActivity.class);
+                            intent.putExtra("noteId", noteId);
+                            context.startActivity(intent);
+
+                        }
+                        else if(which == 1)
+                        {
+                            deleteNote(model, holder);
+                        }
+                    }
+                })
+                .show();
+    }
+
+    private void deleteNote(ModelPdf model, HolderPdfAdmin holder) {
+        String noteId = model.getId();
+        String noteUrl = model.getUrl();
+        String noteTitle = model.getTitle();
+
+        Log.d(TAG, "deleteNote: Deleting...");
+        progressDialog.setMessage("Deleting "+noteTitle+"..."); //e.g Deleting Note abc
+        progressDialog.show();
+
+        Log.d(TAG, "deleteNote: Deleting from storage...");
+        StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(noteUrl);
+        storageReference.delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "onSuccess: Deleted from storage");
+
+                        Log.d(TAG, "onSuccess: Now deleting info from db");
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notes");
+                        reference.child(noteId)
+                                .removeValue()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "onSuccess: Deleted from db too");
+                                        progressDialog.dismiss();
+                                        Toast.makeText(context, "Note deleted successfully", Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.d(TAG, "onFailure: Failed to delete from db due to "+e.getMessage());
+                                        progressDialog.dismiss();
+                                        Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "onFailure: Failed to delete from storage due to "+e.getMessage());
+                        progressDialog.dismiss();
+                        Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void loadPdfSize(ModelPdf model, HolderPdfAdmin holder) {
