@@ -191,7 +191,7 @@ public class PdfAddActivity extends AppCompatActivity {
 
         String uid = firebaseAuth.getUid();
 
-        // setup data to upload
+        // setup data to upload, add view count, download count while adding pdf/notes
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("uid", ""+uid);
         hashMap.put("id", ""+timestamp);
@@ -200,6 +200,10 @@ public class PdfAddActivity extends AppCompatActivity {
         hashMap.put("categoryId", ""+selectedCategoryId);
         hashMap.put("url", ""+uploadedPdfUrl);
         hashMap.put("timestamp", timestamp);
+        hashMap.put("viewsCount", 0);
+        hashMap.put("downloadsCount", 0);
+
+
 
         // db reference: DB > Notes
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Notes");
