@@ -43,6 +43,7 @@
         android:layout_marginRight="18dp"
         android:padding="14dp"
         android:text="@string/splash_btn"
+        android:background="@color/blue"
         android:layout_marginTop="220dp"
         android:textColor="@color/white"/>
 

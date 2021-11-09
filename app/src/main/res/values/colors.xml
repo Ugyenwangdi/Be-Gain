@@ -10,4 +10,9 @@
     <color name="gray01">#c5c5c5</color>
     <color name="gray02">#777777</color>
     <color name="gray03">#EDEDED</color>
+
+    <color name="blue">#2196f3</color>
+    <color name="dark_gray">#424242</color>
+    <color name="dark_toolbar">#121212</color>
+    <color name="light_gray">#adadad</color>
 </resources>

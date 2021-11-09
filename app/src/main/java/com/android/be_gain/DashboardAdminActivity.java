@@ -3,6 +3,8 @@ package com.android.be_gain;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -77,8 +79,30 @@ public class DashboardAdminActivity extends AppCompatActivity
         binding.logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebaseAuth.signOut();
-                checkUser();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(DashboardAdminActivity.this);
+                builder.setTitle("Logout");
+                builder.setMessage("Are you sure to logout?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        firebaseAuth.signOut();
+                        checkUser();
+
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        checkUser();
+                    }
+                });
+                builder.create().show();
+
+//                firebaseAuth.signOut();
+//                checkUser();
             }
         });
 

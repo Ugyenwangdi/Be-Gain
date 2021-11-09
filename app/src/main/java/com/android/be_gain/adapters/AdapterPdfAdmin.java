@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.be_gain.DashboardAdminActivity;
 import com.android.be_gain.MyApplication;
 import com.android.be_gain.PdfDetailActivity;
 import com.android.be_gain.PdfEditActivity;
@@ -168,12 +169,31 @@ public class AdapterPdfAdmin extends RecyclerView.Adapter<AdapterPdfAdmin.Holder
                         }
                         else if(which == 1)
                         {
-                            MyApplication.deleteNote(
-                                    context,
-                                    ""+noteId,
-                                    ""+noteUrl,
-                                    ""+noteTitle
-                            );
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                            builder.setTitle("Delete");
+                            builder.setMessage("Are you sure You want to delete?");
+                            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    MyApplication.deleteNote(
+                                            context,
+                                            ""+noteId,
+                                            ""+noteUrl,
+                                            ""+noteTitle
+                                    );
+
+                                }
+                            });
+                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            });
+                            builder.create().show();
+
                         }
                     }
                 })
