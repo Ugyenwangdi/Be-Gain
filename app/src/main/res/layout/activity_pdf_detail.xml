@@ -37,7 +37,7 @@
 
     <!-- All content under scrollview-->
     <ScrollView
-        android:layout_above="@id/readNoteBtn"
+        android:layout_above="@id/noteOptionsLl"
         android:layout_below="@id/toolbarRL"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -69,8 +69,10 @@
                     <!-- Progress -->
                     <ProgressBar
                         android:id="@+id/progressBar"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"/>
 
                 </RelativeLayout>
 
@@ -228,16 +230,40 @@
 
     </ScrollView>
 
-    <!-- Button: Open to view pdf-->
-    <Button
-        android:id="@+id/readNoteBtn"
+    <!-- layout for button at bottom-->
+    <LinearLayout
+        android:id="@+id/noteOptionsLl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:drawableTop="@drawable/ic_book_white"
-        android:text="Read"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:background="@color/dark_gray"/>
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <!-- Button: Open to view pdf-->
+        <Button
+            android:id="@+id/readNoteBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_book_white"
+            android:text="Read"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:background="@color/dark_gray"/>
+
+        <!-- Button: download pdf-->
+        <Button
+            android:id="@+id/downloadNoteBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_download_white"
+            android:text="Download"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:background="@color/dark_gray"/>
+
+    </LinearLayout>
+
+
 
 </RelativeLayout>
