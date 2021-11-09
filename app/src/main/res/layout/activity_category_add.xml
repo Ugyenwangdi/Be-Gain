@@ -76,6 +76,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_button01"
         android:text="Submit"
+        android:textAllCaps="false"
         android:layout_below="@id/categoryTil"
         android:textColor="@color/white"/>
 

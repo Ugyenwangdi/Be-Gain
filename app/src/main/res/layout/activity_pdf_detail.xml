@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="Note Details"
+            android:textSize="20sp"
             android:textColor="@color/white"
             android:textStyle="bold"/>
 
@@ -36,6 +37,7 @@
 
     <!-- All content under scrollview-->
     <ScrollView
+        android:layout_above="@id/readNoteBtn"
         android:layout_below="@id/toolbarRL"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -225,5 +227,17 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <!-- Button: Open to view pdf-->
+    <Button
+        android:id="@+id/readNoteBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:drawableTop="@drawable/ic_book_white"
+        android:text="Read"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:background="@color/dark_gray"/>
 
 </RelativeLayout>

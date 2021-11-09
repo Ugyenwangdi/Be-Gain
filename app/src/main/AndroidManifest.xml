@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".PdfDetailActivity"></activity>
+        <activity android:name=".PdfViewActivity"></activity>
+        <activity android:name=".PdfDetailActivity" />
         <activity android:name=".PdfEditActivity" />
         <activity android:name=".PdfListAdminActivity" />
         <activity android:name=".PdfAddActivity" />

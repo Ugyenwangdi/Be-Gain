@@ -142,6 +142,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/shape_button01"
         android:text="Upload"
+        android:textAllCaps="false"
         android:textColor="@color/white"/>
 
 </RelativeLayout>

@@ -140,6 +140,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/shape_button01"
                 android:text="Update"
+                android:textAllCaps="false"
                 android:layout_below="@id/categoryTv"
                 android:textColor="@color/white"/>
 

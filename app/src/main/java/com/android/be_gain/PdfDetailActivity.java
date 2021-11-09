@@ -45,6 +45,17 @@ public class PdfDetailActivity extends AppCompatActivity {
             }
         });
 
+        // handle click, open to view pdf
+        binding.readNoteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent1 = new Intent(PdfDetailActivity.this, PdfViewActivity.class);
+                intent1.putExtra("noteId", noteId);
+                startActivity(intent1);
+            }
+        });
+
     }
 
     private void loadNoteDetails() {
