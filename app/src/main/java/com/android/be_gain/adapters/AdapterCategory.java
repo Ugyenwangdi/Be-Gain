@@ -16,7 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.be_gain.PdfListAdminActivity;
+import com.android.be_gain.activities.PdfListAdminActivity;
 import com.android.be_gain.filters.FilterCategory;
 import com.android.be_gain.models.ModelCategory;
 import com.android.be_gain.databinding.RowCategoryBinding;

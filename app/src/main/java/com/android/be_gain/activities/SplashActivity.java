@@ -1,4 +1,4 @@
-package com.android.be_gain;
+package com.android.be_gain.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.be_gain.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 public class SplashActivity extends AppCompatActivity
 {
     //Variable for
-    private static int SPLASH_SCREEN = 3000;
+    private static int SPLASH_SCREEN = 2500;
     //Variables for splash
     Animation topAnim, bottomAnim;
     ImageView logoImage;

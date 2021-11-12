@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back01"
-    tools:context=".DashboardAdminActivity">
+    tools:context=".activities.DashboardAdminActivity">
 
     <!-- Toolbar -->
     <RelativeLayout
@@ -13,6 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@drawable/shape_toolbar02">
+
+        <!-- ImageButton: Open profile -->
+        <ImageButton
+            android:id="@+id/profileBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_person_white"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/transparent"/>
 
         <TextView
             android:id="@+id/titleTv"
@@ -22,6 +32,7 @@
             android:layout_height="wrap_content"
             android:text="Dashboard Admin"
             android:textStyle="bold"
+            android:textSize="18sp"
             android:textColor="@color/white"/>
 
         <TextView
@@ -30,7 +41,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/titleTv"
             android:layout_height="wrap_content"
-            android:text="Be-Gain@gcit.com"
+            android:text="be-gain@gmail.com"
             android:textColor="@color/white"/>
 
         <ImageButton

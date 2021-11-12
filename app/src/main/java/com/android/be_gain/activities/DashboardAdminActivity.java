@@ -1,4 +1,4 @@
-package com.android.be_gain;
+package com.android.be_gain.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -119,6 +119,14 @@ public class DashboardAdminActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DashboardAdminActivity.this, PdfAddActivity.class));
+            }
+        });
+
+        // hancle click, open profile
+        binding.profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DashboardAdminActivity.this, ProfileActivity.class));
             }
         });
     }

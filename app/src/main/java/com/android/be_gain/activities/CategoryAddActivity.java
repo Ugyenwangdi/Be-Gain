@@ -1,4 +1,4 @@
-package com.android.be_gain;
+package com.android.be_gain.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

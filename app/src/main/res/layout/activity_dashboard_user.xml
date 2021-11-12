@@ -5,12 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back01"
-    tools:context=".DashboardUserActivity">
+    tools:context=".activities.DashboardUserActivity">
 
+    <!-- Toolbar -->
     <RelativeLayout
+        android:id="@+id/toolbarRL"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@drawable/shape_toolbar02">
+
+        <!-- ImageButton: Open profile -->
+        <ImageButton
+            android:id="@+id/profileBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_person_white"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/transparent"/>
+
 
         <TextView
             android:id="@+id/titleTv"
@@ -20,6 +33,7 @@
             android:layout_height="wrap_content"
             android:text="Dashboard User"
             android:textStyle="bold"
+            android:textSize="18sp"
             android:textColor="@color/white"/>
 
         <TextView
@@ -28,7 +42,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/titleTv"
             android:layout_height="wrap_content"
-            android:text="Be-Gain@gcit.com"
+            android:text="user@gmail.com"
             android:textColor="@color/white"/>
 
         <ImageButton
@@ -41,7 +55,47 @@
             android:layout_marginEnd="10dp"
             android:background="@android:color/transparent"/>
 
-
     </RelativeLayout>
+
+    <!-- Search -->
+    <EditText
+        android:id="@+id/searchEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbarRL"
+        android:hint="Search"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:drawableStart="@drawable/ic_search_gray"
+        android:padding="10dp"
+        android:background="@color/white"
+        android:textColorHint="@color/gray01"/>
+
+
+    <!-- Categories -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoriesRv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/row_category_user"
+        android:layout_below="@id/searchEt"
+        android:layout_margin="5dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_above="@id/bottomLl"/>
+
+
+    <LinearLayout
+        android:id="@+id/bottomLl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+
+    </LinearLayout>
 
 </RelativeLayout>

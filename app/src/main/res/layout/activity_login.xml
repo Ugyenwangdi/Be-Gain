@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back01"
-    tools:context=".LoginActivity">
+    tools:context=".activities.LoginActivity">
 
     <RelativeLayout
         android:id="@+id/toolbarRL"
@@ -27,7 +27,7 @@
             android:layout_below="@id/iconIv"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:text="Please Login"
+            android:text="Log into Be-Gain"
             android:fontFamily="sans-serif-condensed"
             android:textColor="@color/white"
             android:textSize="28sp" />

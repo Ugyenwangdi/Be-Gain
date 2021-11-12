@@ -1,4 +1,4 @@
-package com.android.be_gain;
+package com.android.be_gain.activities;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -14,17 +14,22 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.android.be_gain.databinding.ActivityPdfDetailBinding;
+import com.android.be_gain.MyApplication;
+import com.android.be_gain.databinding.ActivityPdfDetailUserBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class PdfDetailActivity extends AppCompatActivity {
-
+public class PdfDetailUserActivity extends AppCompatActivity {
     // view binding
-    private ActivityPdfDetailBinding binding;
+    private ActivityPdfDetailUserBinding binding;
+
+    // firebase auth
+    private FirebaseAuth firebaseAuth;
 
     // Pdf id, get from intent
     String noteId, noteTitle, noteUrl;
@@ -34,8 +39,12 @@ public class PdfDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityPdfDetailBinding.inflate(getLayoutInflater());
+        binding = ActivityPdfDetailUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // init firebase auth
+        firebaseAuth = FirebaseAuth.getInstance();
+
 
         // get data from intent e.g noteId
         Intent intent = getIntent();
@@ -62,9 +71,35 @@ public class PdfDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent1 = new Intent(PdfDetailActivity.this, PdfViewActivity.class);
+                Intent intent1 = new Intent(PdfDetailUserActivity.this, PdfViewActivity.class);
                 intent1.putExtra("noteId", noteId);
                 startActivity(intent1);
+            }
+        });
+
+        // handle click, open to view pdf
+        binding.quizBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                Intent intent1 = new Intent(PdfDetailUserActivity.this, PdfViewActivity.class);
+//                intent1.putExtra("noteId", noteId);
+//                startActivity(intent1);
+
+                // get current user
+                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                if (firebaseUser != null)
+                {
+                    Toast.makeText(PdfDetailUserActivity.this, "Attempt quiz", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(PdfDetailUserActivity.this, "Login to your account", Toast.LENGTH_SHORT).show();
+
+                    Intent intent1 = new Intent(PdfDetailUserActivity.this, LoginActivity.class);
+                    startActivity(intent1);
+                }
+
             }
         });
 
@@ -74,10 +109,10 @@ public class PdfDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Log.d(TAG_DOWNLOAD, "onClick: Checking permission");
-                if (ContextCompat.checkSelfPermission(PdfDetailActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+                if (ContextCompat.checkSelfPermission(PdfDetailUserActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
                 {
                     Log.d(TAG_DOWNLOAD, "onClick: Permission already granted, can download book");
-                    MyApplication.downloadNote(PdfDetailActivity.this, ""+noteId, ""+noteTitle, ""+noteUrl);
+                    MyApplication.downloadNote(PdfDetailUserActivity.this, ""+noteId, ""+noteTitle, ""+noteUrl);
                 }
                 else
                 {
@@ -87,7 +122,6 @@ public class PdfDetailActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     // request storage permission
