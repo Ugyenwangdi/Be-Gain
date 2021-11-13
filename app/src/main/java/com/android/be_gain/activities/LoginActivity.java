@@ -152,7 +152,7 @@ public class LoginActivity extends AppCompatActivity
                     @Override
                     public void onFailure(@NonNull Exception e)
                     {
-                        //progressDialog.dismiss();
+                        progressDialog.dismiss();
                         Toast.makeText(LoginActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
