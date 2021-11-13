@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.PdfDetailUserActivity"></activity>
+        <activity android:name=".activities.PasswordResetActivity"></activity>
+        <activity android:name=".activities.PdfDetailUserActivity" />
         <activity android:name=".activities.ProfileEditActivity" />
         <activity android:name=".activities.ProfileActivity" />
         <activity android:name=".activities.PdfDetailActivityUser" />

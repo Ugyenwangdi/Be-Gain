@@ -12,10 +12,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.android.be_gain.databinding.ActivityRegisterBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -82,10 +85,17 @@ public class RegisterActivity extends AppCompatActivity
         password = binding.passwordEt.getText().toString().trim();
         String cPassword = binding.cPasswordEt.getText().toString().trim();
 
+        // password validation.. atleast four characters
+        String pwLength = ".{4,}";
+
         // validate data
         if (TextUtils.isEmpty(name))
         {
             Toast.makeText(this, "Enter your name...", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(email))
+        {
+            Toast.makeText(this, "Enter your email...", Toast.LENGTH_SHORT).show();
         }
         else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
         {
@@ -95,13 +105,17 @@ public class RegisterActivity extends AppCompatActivity
         {
             Toast.makeText(this, "Enter Password...", Toast.LENGTH_SHORT).show();
         }
+        else if (!password.matches(pwLength))
+        {
+            Toast.makeText(this, "Enter at least 4 characters.", Toast.LENGTH_SHORT).show();
+        }
         else if (TextUtils.isEmpty(cPassword))
         {
             Toast.makeText(this, "Confirm Password...", Toast.LENGTH_SHORT).show();
         }
         else if (!password.equals(cPassword))
         {
-            Toast.makeText(this, "Password doesn't match...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Password didn't match...", Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -123,8 +137,7 @@ public class RegisterActivity extends AppCompatActivity
                     @Override
                     public void onSuccess(AuthResult authResult)
                     {
-                        // account creation success, now add in firebase realtime database
-                        updateUserInfo();
+                        SendEmailVerificationMessage();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener()
@@ -137,6 +150,32 @@ public class RegisterActivity extends AppCompatActivity
                         Toast.makeText(RegisterActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+
+    private void SendEmailVerificationMessage(){
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null){
+            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful())
+                    {
+
+                        // account creation success, now add in firebase realtime database
+                        updateUserInfo();
+
+                    }
+                    else
+                    {
+
+                        String errorMessage = task.getException().getMessage();
+                        Toast.makeText(RegisterActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+            });
+        }
     }
 
     private void updateUserInfo()
@@ -169,7 +208,9 @@ public class RegisterActivity extends AppCompatActivity
                     {
                         // data added to db
                         progressDialog.dismiss();
-                        Toast.makeText(RegisterActivity.this, "Account created...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "Successfully Registered User, Please Verify!", Toast.LENGTH_SHORT).show();
+
+                        //Toast.makeText(RegisterActivity.this, "Account created...", Toast.LENGTH_SHORT).show();
                         // since user account is created so start dashboard of user
                         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                         finish();
@@ -187,5 +228,6 @@ public class RegisterActivity extends AppCompatActivity
                 });
 
     }
+
 
 }

@@ -56,7 +56,7 @@
                 <RelativeLayout
                     android:id="@+id/pdfRl"
                     android:layout_width="100dp"
-                    android:layout_height="140dp"
+                    android:layout_height="125dp"
                     android:layout_marginEnd="5dp"
                     android:background="@color/gray02">
 
@@ -187,29 +187,29 @@
 
                     </TableRow>
 
-                    <!-- Downloads count row -->
-                    <TableRow
-                        android:layout_marginTop="5dp">
+<!--                    &lt;!&ndash; Downloads count row &ndash;&gt;-->
+<!--                    <TableRow-->
+<!--                        android:layout_marginTop="5dp">-->
 
-                        <TextView
-                            android:id="@+id/downloadsLabelTv"
-                            style="@style/TextAppearance.MaterialComponents.Caption"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="5dp"
-                            android:text="Downloads"/>
+<!--                        <TextView-->
+<!--                            android:id="@+id/downloadsLabelTv"-->
+<!--                            style="@style/TextAppearance.MaterialComponents.Caption"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginEnd="5dp"-->
+<!--                            android:text="Downloads"/>-->
 
 
-                        <TextView
-                            android:id="@+id/downloadsTv"
-                            style="@style/TextAppearance.MaterialComponents.Caption"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginEnd="5dp"
-                            android:text="N/A"/>
+<!--                        <TextView-->
+<!--                            android:id="@+id/downloadsTv"-->
+<!--                            style="@style/TextAppearance.MaterialComponents.Caption"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:layout_marginEnd="5dp"-->
+<!--                            android:text="N/A"/>-->
 
-                    </TableRow>
+<!--                    </TableRow>-->
 
                 </TableLayout>
 

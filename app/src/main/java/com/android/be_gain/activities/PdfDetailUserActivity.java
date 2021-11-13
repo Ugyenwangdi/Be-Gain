@@ -152,7 +152,7 @@ public class PdfDetailUserActivity extends AppCompatActivity {
                         String description = ""+snapshot.child("description").getValue();
                         String categoryId = ""+snapshot.child("categoryId").getValue();
                         String viewsCount = ""+snapshot.child("viewsCount").getValue();
-                        String downloadsCount = ""+snapshot.child("downloadsCount").getValue();
+//                        String downloadsCount = ""+snapshot.child("downloadsCount").getValue();
                         noteUrl = ""+snapshot.child("url").getValue();
                         String timestamp = ""+snapshot.child("timestamp").getValue();
 
@@ -184,7 +184,7 @@ public class PdfDetailUserActivity extends AppCompatActivity {
                         binding.titleTv.setText(noteTitle);
                         binding.descriptionTv.setText(description);
                         binding.viewsTv.setText(viewsCount.replace("null", "N/A"));
-                        binding.downloadsTv.setText(downloadsCount.replace("null", "N/A"));
+//                        binding.downloadsTv.setText(downloadsCount.replace("null", "N/A"));
                         binding.dateTv.setText(date);
 
                     }

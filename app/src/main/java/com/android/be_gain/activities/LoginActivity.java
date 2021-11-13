@@ -31,9 +31,11 @@ public class LoginActivity extends AppCompatActivity
 
     // firebase auth
     private FirebaseAuth firebaseAuth;
+    FirebaseUser currentUser;
 
     // firebase dialog
     private ProgressDialog progressDialog;
+    private Boolean emailVerified;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -44,11 +46,25 @@ public class LoginActivity extends AppCompatActivity
 
         // init firebase auth
         firebaseAuth = FirebaseAuth.getInstance();
+        currentUser = firebaseAuth.getCurrentUser();
+
 
         // setup progress dialog
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Please Wait");
         progressDialog.setCanceledOnTouchOutside(false);
+
+
+        // forgot password
+        binding.forgotTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent password_reset_intent = new Intent(LoginActivity.this, PasswordResetActivity.class);
+                startActivity(password_reset_intent);
+
+            }
+        });
 
         // handle click, go to register screen
         binding.noAccountTv.setOnClickListener(new View.OnClickListener()
@@ -80,7 +96,11 @@ public class LoginActivity extends AppCompatActivity
         password = binding.passwordEt.getText().toString().trim();
 
         // validate data
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+        if (TextUtils.isEmpty(email))
+        {
+            Toast.makeText(this, "Enter your email...", Toast.LENGTH_SHORT).show();
+        }
+        else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
         {
             Toast.makeText(this, "Invalid email pattern...!", Toast.LENGTH_SHORT).show();
         }
@@ -109,8 +129,22 @@ public class LoginActivity extends AppCompatActivity
                     @Override
                     public void onSuccess(AuthResult authResult)
                     {
-                        // login success
-                        checkUser();
+                        progressDialog.dismiss();
+                        FirebaseUser user = firebaseAuth.getCurrentUser();
+                        emailVerified = user.isEmailVerified();
+
+                        if (emailVerified)
+                        {
+
+                            // login success
+                            checkUser();
+
+                        }
+                        else {
+
+                            Toast.makeText(LoginActivity.this, "Your account is not Verified! Please check your mail.", Toast.LENGTH_SHORT).show();
+                            firebaseAuth.signOut();
+                        }
                     }
                 })
                 .addOnFailureListener(new OnFailureListener()
@@ -118,7 +152,7 @@ public class LoginActivity extends AppCompatActivity
                     @Override
                     public void onFailure(@NonNull Exception e)
                     {
-                        progressDialog.dismiss();
+                        //progressDialog.dismiss();
                         Toast.makeText(LoginActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
@@ -128,14 +162,13 @@ public class LoginActivity extends AppCompatActivity
     private void checkUser()
     {
         progressDialog.setMessage("Checking User...");
+        progressDialog.show();
 
-        //check if user is user of admin from realtime database
-        // get current user
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
 
         // check in db
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
-        ref.child(firebaseUser.getUid())
+        ref.child(user.getUid())
                 .addListenerForSingleValueEvent(new ValueEventListener()
                 {
                     @Override
