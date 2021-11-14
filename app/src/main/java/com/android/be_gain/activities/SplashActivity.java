@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 public class SplashActivity extends AppCompatActivity
 {
     //Variable for
-    private static int SPLASH_SCREEN = 2500;
+    private static int SPLASH_SCREEN = 2000;
     //Variables for splash
     Animation topAnim, bottomAnim;
     ImageView logoImage;

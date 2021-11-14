@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.PasswordResetActivity"></activity>
+        <activity android:name=".activities.FeedbackActivity"></activity>
+        <activity android:name=".activities.AboutActivity" />
+        <activity android:name=".activities.PasswordResetActivity" />
         <activity android:name=".activities.PdfDetailUserActivity" />
         <activity android:name=".activities.ProfileEditActivity" />
         <activity android:name=".activities.ProfileActivity" />
@@ -41,6 +43,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
