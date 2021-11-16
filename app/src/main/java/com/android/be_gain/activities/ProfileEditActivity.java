@@ -99,6 +99,15 @@ public class ProfileEditActivity extends AppCompatActivity {
             }
         });
 
+        binding.changePw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent password_reset_intent = new Intent(ProfileEditActivity.this, PasswordResetActivity.class);
+                startActivity(password_reset_intent);
+            }
+        });
+
+
     }
 
     private void validateData() {
