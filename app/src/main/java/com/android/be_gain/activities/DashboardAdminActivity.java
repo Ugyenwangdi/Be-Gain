@@ -265,9 +265,9 @@ public class DashboardAdminActivity extends AppCompatActivity implements Navigat
                 startActivity(intentProfile);
                 break;
 
-            case R.id.nav_score:
-                Toast.makeText(DashboardAdminActivity.this,"Score", Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.nav_score:
+//                Toast.makeText(DashboardAdminActivity.this,"Score", Toast.LENGTH_SHORT).show();
+//                break;
 
             case R.id.nav_about:
                 Intent intentAbout = new Intent(DashboardAdminActivity.this, AboutActivity.class);

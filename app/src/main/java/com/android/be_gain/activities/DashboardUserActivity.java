@@ -268,9 +268,14 @@ public class DashboardUserActivity extends AppCompatActivity implements Navigati
                 startActivity(intentProfile);
                 break;
 
-            case R.id.nav_score:
-                Toast.makeText(DashboardUserActivity.this,"Score", Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.nav_quiz:
+//                Intent intentQuiz = new Intent(DashboardUserActivity.this, QuizActivity.class);
+//                startActivity(intentQuiz);
+//                break;
+
+//            case R.id.nav_score:
+//                Toast.makeText(DashboardUserActivity.this,"Score", Toast.LENGTH_SHORT).show();
+//                break;
 
             case R.id.nav_about:
                 Intent intentAbout = new Intent(DashboardUserActivity.this, AboutActivity.class);

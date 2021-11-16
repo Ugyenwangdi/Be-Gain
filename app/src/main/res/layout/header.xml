@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/gray02"
+    android:background="@color/dark_gray"
     android:gravity="bottom"
     android:padding="20dp"
     android:orientation="vertical"
@@ -30,6 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/baloo"
+        android:textColor="@color/white"
         android:text="User"
         android:textSize="24sp" />
 
@@ -37,7 +38,7 @@
         android:id="@+id/userEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/aclonica"
+        android:textColor="@color/white"
         android:text="user@gmail.com"
         android:textSize="14sp" />
 

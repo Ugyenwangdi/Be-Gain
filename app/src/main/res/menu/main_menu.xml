@@ -20,18 +20,18 @@
 
 <!--        <item-->
 <!--            android:id="@+id/nav_quiz"-->
-<!--            android:title="Notes"-->
+<!--            android:title="Quiz"-->
 <!--            android:icon="@drawable/ic_quiz_white"/>-->
 
 <!--        <item-->
 <!--            android:id="@+id/nav_videos"-->
-<!--            android:title="Notes"-->
+<!--            android:title="Videos"-->
 <!--            android:icon="@drawable/ic_videos_white"/>-->
 
-        <item
-            android:id="@+id/nav_score"
-            android:title="Score"
-            android:icon="@drawable/ic_score_white"/>
+<!--        <item-->
+<!--            android:id="@+id/nav_score"-->
+<!--            android:title="Score"-->
+<!--            android:icon="@drawable/ic_score_white"/>-->
 
         <item
             android:id="@+id/nav_about"

@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.FeedbackActivity"></activity>
+        <activity android:name=".activities.WonActivity"></activity>
+        <activity android:name=".activities.QuizActivity" />
+        <activity android:name=".activities.FeedbackActivity" />
         <activity android:name=".activities.AboutActivity" />
         <activity android:name=".activities.PasswordResetActivity" />
         <activity android:name=".activities.PdfDetailUserActivity" />

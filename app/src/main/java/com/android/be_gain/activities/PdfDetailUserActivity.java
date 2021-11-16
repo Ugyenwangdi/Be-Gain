@@ -78,30 +78,30 @@ public class PdfDetailUserActivity extends AppCompatActivity {
         });
 
         // handle click, open to view pdf
-        binding.quizBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-//                Intent intent1 = new Intent(PdfDetailUserActivity.this, PdfViewActivity.class);
-//                intent1.putExtra("noteId", noteId);
-//                startActivity(intent1);
-
-                // get current user
-                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                if (firebaseUser != null)
-                {
-                    Toast.makeText(PdfDetailUserActivity.this, "Attempt quiz", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(PdfDetailUserActivity.this, "Login to your account", Toast.LENGTH_SHORT).show();
-
-                    Intent intent1 = new Intent(PdfDetailUserActivity.this, LoginActivity.class);
-                    startActivity(intent1);
-                }
-
-            }
-        });
+//        binding.quizBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+////                Intent intent1 = new Intent(PdfDetailUserActivity.this, PdfViewActivity.class);
+////                intent1.putExtra("noteId", noteId);
+////                startActivity(intent1);
+//
+//                // get current user
+//                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+//                if (firebaseUser != null)
+//                {
+//                    Toast.makeText(PdfDetailUserActivity.this, "Attempt quiz", Toast.LENGTH_SHORT).show();
+//                }
+//                else
+//                {
+//                    Toast.makeText(PdfDetailUserActivity.this, "Login to your account", Toast.LENGTH_SHORT).show();
+//
+//                    Intent intent1 = new Intent(PdfDetailUserActivity.this, LoginActivity.class);
+//                    startActivity(intent1);
+//                }
+//
+//            }
+//        });
 
         // handle click, download pdf
         binding.downloadNoteBtn.setOnClickListener(new View.OnClickListener() {

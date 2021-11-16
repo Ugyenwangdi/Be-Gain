@@ -252,16 +252,16 @@
 
         <!-- Button: download pdf-->
 
-        <Button
-            android:id="@+id/quizBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/ic_quiz_white"
-            android:text="Quiz"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:background="@color/dark_gray"/>
+<!--        <Button-->
+<!--            android:id="@+id/quizBtn"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:drawableTop="@drawable/ic_quiz_white"-->
+<!--            android:text="Quiz"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:background="@color/dark_gray"/>-->
 
         <Button
             android:id="@+id/downloadNoteBtn"
