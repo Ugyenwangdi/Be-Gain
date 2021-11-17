@@ -6,12 +6,17 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -215,8 +220,8 @@ public class ProfileEditActivity extends AppCompatActivity {
     private void showImageAttachMenu() {
 
         PopupMenu popupMenu = new PopupMenu(this, binding.profileIv);
-        popupMenu.getMenu().add(Menu.NONE, 0, 0, "Gallery");
-        popupMenu.getMenu().add(Menu.NONE, 1, 1, "Camera");
+        popupMenu.getMenu().add(Menu.NONE, 0, 0, "Camera");
+        popupMenu.getMenu().add(Menu.NONE, 1, 1, "Gallery");
 
         popupMenu.show();
 
@@ -234,7 +239,21 @@ public class ProfileEditActivity extends AppCompatActivity {
                 else if (which == 1)
                 {
                     // gallery clicked
-                    pickImageGallery();
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+                        if (ContextCompat.checkSelfPermission(ProfileEditActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+                        {
+                            pickImageGallery();
+                        }
+                        else
+                        {
+                            requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                        }
+
+                    }
+
+
                 }
                 return false;
             }
@@ -242,7 +261,7 @@ public class ProfileEditActivity extends AppCompatActivity {
 
     }
 
-    private void pickImageGallery() {
+    private void pickImageCamera() {
 
         // intent to pick image from camera
         ContentValues values = new ContentValues();
@@ -256,7 +275,7 @@ public class ProfileEditActivity extends AppCompatActivity {
 
     }
 
-    private void pickImageCamera() {
+    private void pickImageGallery() {
 
         // intent to pick image from gallery
         Intent intent = new Intent(Intent.ACTION_PICK);
